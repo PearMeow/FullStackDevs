@@ -67,6 +67,7 @@ Perry :: Created devlog.txt and made Woo.java and v0 of our FP.
 2022-1-14:
 --------------------------------------------------------------
 Perry :: Added flag.jpg and propro.pdf. Updated devlog.txt.
+Salaj :: Improved propro.pdf.
 
 ==============================================================
 
