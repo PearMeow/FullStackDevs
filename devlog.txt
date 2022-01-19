@@ -69,6 +69,11 @@ Perry :: Created devlog.txt and made Woo.java and v0 of our FP.
 Perry :: Added flag.jpg and propro.pdf. Updated devlog.txt.
 Salaj :: Improved propro.pdf.
 
+2022-1-18:
+--------------------------------------------------------------
+Perry :: Made v1 and v2 with Card.java and Deck.java. Updated Woo.java.
+Salaj :: Helped conceptualize and write code.
+Ariel :: Brought cards to class to help Salaj understand Durak better.
 ==============================================================
 
 
