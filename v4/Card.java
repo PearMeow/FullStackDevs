@@ -17,8 +17,16 @@ public class Card implements Comparable {
 
     }
 
+    public boolean isTrump(){
+        return suit == trump;
+    }
+
+    public String toString(){
+        return numArray[number] + " of " + suitArray[suit];
+    }
+
     public int compareTo (Object perry) {
-	//check if perry is Card
+	    //check if perry is Card
         if( !perry instanceof Card ){
             //raise error
             return;
@@ -39,11 +47,4 @@ public class Card implements Comparable {
 	}
     }
 
-    public boolean isTrump(){
-        return suit == trump;
-    }
-
-    public String toString(){
-        return numArray[number] + " of " + suitArray[suit];
-    }
 }

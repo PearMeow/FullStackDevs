@@ -15,7 +15,7 @@ public class Deck {
   }
 
     public static void draw(ArrayList<Card> decker, ArrayList<Card> handy){
-        handy.add(decker.get(0));
+        handy.add(decker
         decker.remove(0);
     }
 
