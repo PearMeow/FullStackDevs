@@ -18,25 +18,30 @@ public class Card implements Comparable {
     }
 
     public int compareTo (Object perry) {
-
+	//check if perry is Card
         if( !perry instanceof Card ){
             //raise error
             return;
         }
+	
+	//base cases
+        if (!perry.isTrump() && this.isTrump){
+		return 1;
+	}
 
-        //if ( perry.isTrump() && )
-
-        
-
+	else if (perry.isTrump() && !this.isTrump){
+		return -1;
+	}
+	
+	else{
+		int difference = this.number - perry.number;
+		return (difference)/Math.abs(difference); 
+	}
     }
 
     public boolean isTrump(){
         return suit == trump;
     }
-
-
-
-    public 
 
     public String toString(){
         return numArray[number] + " of " + suitArray[suit];
