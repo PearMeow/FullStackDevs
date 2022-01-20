@@ -10,11 +10,8 @@ public class Card implements Comparable {
 
 
     public Card (int suit, int num) {
-
         this.suit = suit;
         number = num;
-        trump = 0;
-
     }
 
     public boolean isTrump(){
@@ -30,24 +27,27 @@ public class Card implements Comparable {
     }
 
     public int compareTo (Object c) {
-            //check if perry is Card
+        //check if perry is Card
         if( ! (c instanceof Card) ){
             //raise error
+            throw new ClassCastException("perry says you are dumb because that's not a card");
+        }
+        
+        Card perry = (Card) c;
+        
+        //check if this card is trump and other isnt
+        if ( !perry.isTrump() && this.isTrump() ){
             return 1;
         }
-        Card perry = (Card) c;
-            //base cases
-            if (!perry.isTrump() && this.isTrump() ){
-                return 1;
-            }
 
-            else if (perry.isTrump() && !this.isTrump() ){
-                return -1;
-            }
+        //check if this card is not trump and other
+        else if (perry.isTrump() && !this.isTrump() ){
+            return -1;
+        }
 
-            else{
-                int difference = this.number - perry.number;
-                return (difference)/Math.abs(difference);
-            }
+        else{
+            int difference = this.number - perry.number;
+            return (difference)/Math.abs(difference);
+        }
     }
 }

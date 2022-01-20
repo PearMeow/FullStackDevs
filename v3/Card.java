@@ -19,14 +19,15 @@ public class Card implements Comparable {
 
     public int compareTo (Object perry) {
 
-        if( !perry instanceof Card ){
+        if( ! (perry instanceof Card) ){
             //raise error
-            return;
+            //stub
+            return 0;
         }
 
         //if ( perry.isTrump() && )
 
-        
+        return 0;
 
     }
 
@@ -34,9 +35,6 @@ public class Card implements Comparable {
         return suit == trump;
     }
 
-
-
-    public 
 
     public String toString(){
         return numArray[number] + " of " + suitArray[suit];

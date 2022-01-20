@@ -43,7 +43,7 @@ public class Deck {
         //code that hands out cards
 
         Card trumpCard = theDeck.get(0);
-        Card.trump = trumpCard.getSuit();
+        //Card.trump = trumpCard.getSuit();
 
     }
 

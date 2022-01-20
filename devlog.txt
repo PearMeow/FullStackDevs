@@ -10,13 +10,13 @@ Durak/Durak
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- We made trump card a static variable so its constant for all cards
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- How will we use the trump 
-- Should 
+- how are we going to make a ai that plays the game?
+- how are we going to alternate what player starts first each round?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,12 +24,13 @@ COOL STUFF LEARNED
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Not implement a class called Deck
+- tbd
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
-||||||||||||||||||||||||||||||||||||||||||
+- Fully understand the problem before trying to code a solution.
+
+
 
 
 
@@ -60,7 +61,14 @@ Ariel :: Brought cards to class to help Salaj understand Durak better.
 2022-1-19:
 ---------------------------------------------------------------
 Perry :: pulled the repo
-Ariel :: Created draw and tested into
+Ariel :: Created draw and tested it
+Ariel & Salaj :: DOJO :: started v4, made Woo an instanceble class that will be used as a game. finished compareTo.
+Perry: finished compareTo and tested that it works.
+Salaj:: 
+
+
+
+
 ==============================================================
 
 
