@@ -33,6 +33,7 @@ public class Woo {
             passCards();   
             //set up trump
             Card trumpCard = mainDeck.get(0);
+            Card.trumpCard = trumpCard;
             mainDeck.remove(0); mainDeck.add(trumpCard);//remove trump card and add it to back of deck
             System.out.println("The trump card is " + trumpCard + "\n");
     }      
