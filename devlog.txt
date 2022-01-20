@@ -17,6 +17,7 @@ UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - how are we going to make a ai that plays the game?
 - how are we going to alternate what player starts first each round?
+- how to make gameplay loop?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -64,9 +65,9 @@ Perry :: pulled the repo
 Ariel :: Created draw and tested it
 Ariel & Salaj :: DOJO :: started v4, made Woo an instanceble class that will be used as a game. finished compareTo.
 Perry: finished compareTo and tested that it works.
-Salaj:: 
-
-
+Ariel: playerAttack
+Perry: computerAttack and comments for how to implement computerDefend
+Salaj: added sorting to help computer make decisions
 
 
 ==============================================================
