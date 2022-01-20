@@ -68,7 +68,7 @@ public class Woo {
         field = new ArrayList<Card>();
 
         //stub: 
-        boolean playerTurn = false;
+        boolean playerTurn = true;
 
         //only works once right now, we need to make it loop later
 
@@ -82,16 +82,34 @@ public class Woo {
                 defend();
         }
 
+        if( !hasEnded() ){
+            passCards();
+            playRound();
+        }
+
     }
 
 
     //AI
     public void attackAI(){
+        Deck.sort(computerHand);
         field.add(computerHand.get(0));
         computerHand.remove(0);
     }
     public void defendAI(){
-    // goes through hand and then compares for the same suit. if no same suit uses the lowest trump.
+        for(int a = 0; a < computerHand.size(); a++){
+            if(field.get(field.size()-1).compareTo(computerHand.get(a)) < 0){
+                System.out.println("Computer uses the " + computerHand.get(a) + "to defeat the " + field.get(field.size() -1));
+                field.add(computerHand.get(a));
+                computerHand.remove(a);
+                return;
+            }
+        }
+        System.out.println("Computer is too weak to defeat your card. It takes all the cards on the field");
+        for(int e = field.size()-1; e >= 0; e--  ){
+            computerHand.add(field.get(e));
+            field.remove(e);
+        }
     }       
 
 
@@ -114,12 +132,8 @@ public class Woo {
     //play turn
     public static void main (String[] args) {
         Woo game = new Woo();
-        
-        game.field = new ArrayList<Card>();
-        game.attack();
-        System.out.println("field: " + game.field);
-        System.out.println("player hand: " + game.playerHand);
 
+        game.playRound();
         //while( !game.hasEnded() ){
         //       game.playRound();
         //}
