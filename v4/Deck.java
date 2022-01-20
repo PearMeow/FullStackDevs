@@ -17,6 +17,7 @@ public class Deck {
       handy.add(decker.get(0));
       decker.remove(0);
   }
+
   public static ArrayList<Card> creator() {
       ArrayList<Card> deck = new ArrayList<Card>();
       for(int i = 0; i < 4; i++){
@@ -25,18 +26,5 @@ public class Deck {
           }
       }
       return deck;
-  }
-  public static void main (String[] args) {
-      ArrayList<Card> theDeck = creator();
-      shuffle(theDeck);
-      
-      
-      System.out.println(theDeck);
-      
-      ArrayList<Card> p1Hand = new ArrayList<Card>();
-      ArrayList<Card> p2Hand = new ArrayList<Card>();
-      //code that hands out cards
-      Card trumpCard = theDeck.get(0);
-      Card.trump = trumpCard.getSuit();
   }
 }

@@ -5,7 +5,8 @@ public class Card implements Comparable {
 
     public static String[] suitArray = new String[] {"Diamonds", "Clubs", "Hearts", "Spades"};
     public static String[] numArray = new String [] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
-    public static int trump; 
+
+    public static Card trumpCard;
 
 
     public Card (int suit, int num) {
@@ -17,31 +18,36 @@ public class Card implements Comparable {
     }
 
     public boolean isTrump(){
-        return suit == trump;
+        return suit == trumpCard.getSuit();
+    }
+
+    public int getSuit(){
+        return suit;
     }
 
     public String toString(){
         return numArray[number] + " of " + suitArray[suit];
     }
 
-    public int compareTo (Object perry) {
-	    //check if perry is Card
-        if( !perry instanceof Card ){
+    public int compareTo (Object c) {
+            //check if perry is Card
+        if( ! (c instanceof Card) ){
             //raise error
-            return;
+            return 1;
         }
-	    //base cases
-            if (!perry.isTrump() && this.isTrump){
-	    	return 1;
-	    }
+        Card perry = (Card) c;
+            //base cases
+            if (!perry.isTrump() && this.isTrump() ){
+                return 1;
+            }
 
-	    else if (perry.isTrump() && !this.isTrump){
-	    	return -1;
-	    }
-    
-	    else{
-	    	int difference = this.number - perry.number;
-	    	return (difference)/Math.abs(difference); 
-	    }
+            else if (perry.isTrump() && !this.isTrump() ){
+                return -1;
+            }
+
+            else{
+                int difference = this.number - perry.number;
+                return (difference)/Math.abs(difference);
+            }
     }
 }
