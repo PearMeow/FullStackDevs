@@ -20,6 +20,7 @@ help alternate who goes first.
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - how to make gameplay loop?
+- if the user entered an invalid input? 
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,6 +78,10 @@ Perry :: worked on UI to make the state of game cleared
 Salaj :: implemented a way to change who goes first in a round
 Ariel :: implemented defend() for player
 
+2022-1-21:
+--------------------------------------------------------------
+Perry, Salaj, & Ariel :: Tried adding functionality in method that would help if the user entered an invalid input but it didn't work. 
+Brainstormed an algo that would allow adding cards.
 
 
 ==============================================================
