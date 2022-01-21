@@ -77,7 +77,8 @@ public class Woo {
     public void playRound(){
         //reset the field
         field = new ArrayList<Card>();
-
+        Deck.sort(computerHand); 
+        Deck.sort(playerHand); 
         //future: 
         //check to see who goes first
         if( playerTurn ){
@@ -99,24 +100,25 @@ public class Woo {
 
     //AI Attack
     public void attackAI(){
-        Deck.sort(computerHand);
         field.add(computerHand.get(0));
         computerHand.remove(0);
     }
 
     //AI Defend
     public void defendAI(){
-        Deck.sort(computerHand); //to make sure cards are in least important to most important order
         //loops through the cards 
         for(int a = 0; a < computerHand.size(); a++){
             //check if current card beats card in field
             if( field.get(field.size()-1).compareTo(computerHand.get(a)) < 0 && field.get(field.size()-1).getSuit() == computerHand.get(a).getSuit() ){
                 System.out.println("\nComputer uses the " + computerHand.get(a) + " to defeat the " + field.get(field.size() -1) + "\n");
-                //
+                
                 field.add(computerHand.get(a));
                 computerHand.remove(a);
-                return;
+                return; //might wanna remove this
             }
+            // ADD 
+            // if successful defend, check player's hand for things that they can add
+            // if addable cards, attack again
         }
         System.out.println("\nComputer is too weak to defeat your card. It takes all the cards on the field.");
         for(int e = field.size()-1; e >= 0; e--  ){
@@ -135,10 +137,16 @@ public class Woo {
                         "Your choice: ";
         System.out.print(output);
         //input
-        String input = in.nextLine();
+        int input = Integer.parseInt(in.nextLine());
+        /*
+        while (input > playerHand.size() || input < 0) {
+            System.out.println("Play a card bruv");
+            input = Integer.parseInt(in.nextLine());
+        }
+        */
         //take card for your deck and put in field
-        field.add(playerHand.get(Integer.parseInt(input)));
-        playerHand.remove(Integer.parseInt(input));    
+        field.add(playerHand.get(input));
+        playerHand.remove(input);    
     }
     
     //PlayerDefend
@@ -150,13 +158,19 @@ public class Woo {
             String output = "\nCards in Field: " + field.toString() +
                             "\n\nChoose a card to Defend with: \n" +
                             Deck.printHand(playerHand) + 
-                            Integer.toString( playerHand.size() ) + ": Skip Turn\n" +
+                            Integer.toString( playerHand.size() ) + ": Take Cards\n" +
                             "Your choice: ";
             System.out.print(output);
             //input
-            String input = in.nextLine();
+            int input = Integer.parseInt(in.nextLine());
             //if chose to skip, take the kids *ahem* i mean cards
-            if ( Integer.parseInt(input) == playerHand.size() ){
+            /*
+            while (input > playerHand.size() || input < 0) {
+            System.out.println("Play a card bruv");
+            input = Integer.parseInt(in.nextLine());
+        }
+            */
+            if ( input == playerHand.size() ){
                 System.out.println("\nYou have accepted defeat you coward! You must take all the cards in retribution.");
                 for(int e = field.size()-1; e >= 0; e--  ){
                     playerHand.add(field.get(e));
@@ -166,15 +180,15 @@ public class Woo {
                 playerTurn = true;
             }
             //check if card chosen is valid
-            else if( playerHand.get(Integer.parseInt(input)).compareTo(field.get(field.size()-1)) > 0 ){
+            else if( playerHand.get(input).compareTo(field.get(field.size()-1)) > 0  && playerHand.get(input).getSuit() == field.get(field.size()-1).getSuit()){
                 //if valid: place it
-                field.add(playerHand.get(Integer.parseInt(input)));
-                playerHand.remove(Integer.parseInt(input));
+                field.add(playerHand.get(input));
+                playerHand.remove(input);
                 madeMove = true;
             }
             else{
-                //if not valid chastice the imbecile
-                System.out.println("That's not a card you doof. Try again.");
+                //if not valid chastise the imbecile
+                System.out.println("That card isn't strong enough you doof. Try again.");
             }
         }
     }      

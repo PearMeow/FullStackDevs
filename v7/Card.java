@@ -40,6 +40,7 @@ public class Card implements Comparable {
         else if (perry.isTrump() && !this.isTrump() ){
             return -1;
         }
+        
         //check which is higher number
         else{
             int difference = this.number - perry.number;
