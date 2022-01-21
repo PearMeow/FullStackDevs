@@ -12,13 +12,14 @@ Durak/Durak
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - We made trump card a static variable so its constant for all cards
+- We checked if a move was valid before letting the player make it.
+- We created a boolean variable called playerTurn that determines wheter or not the player goes first in a round to
+help alternate who goes first.
+- We made the AI do a move that always plays the lowest possible card, which is usually smart.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- how are we going to make a ai that plays the game?
-- how are we going to alternate what player starts first each round?
 - how to make gameplay loop?
-- how do we wat to implement gameplay? should player be able to choose from all cards or only vaid ones?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -31,7 +32,6 @@ MID-DEVELOPMENT DESIGN CHANGES
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Fully understand the problem before trying to code a solution.
-
 
 
 
@@ -72,7 +72,7 @@ Salaj: added sorting to help computer make decisions
 
 2022-1-20:
 --------------------------------------------------------------
-Perry, Salaj & Ariel :: Made the first operating version (v7) of the game. Currently only player can attack and computer can only computer
+Perry, Salaj & Ariel :: Made the first operating version (v7) of the game. Currently only player can attack and computer can do both
 Perry :: worked on UI to make the state of game cleared
 Salaj :: implemented a way to change who goes first in a round
 Ariel :: implemented defend() for player
