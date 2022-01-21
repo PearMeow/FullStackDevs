@@ -18,6 +18,7 @@ UNRESOLVED ISSUES
 - how are we going to make a ai that plays the game?
 - how are we going to alternate what player starts first each round?
 - how to make gameplay loop?
+- how do we wat to implement gameplay? should player be able to choose from all cards or only vaid ones?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,6 +69,15 @@ Perry: finished compareTo and tested that it works.
 Ariel: playerAttack
 Perry: computerAttack and comments for how to implement computerDefend
 Salaj: added sorting to help computer make decisions
+
+2022-1-20:
+--------------------------------------------------------------
+Perry, Salaj & Ariel :: Made the first operating version (v7) of the game. Currently only player can attack and computer can only computer
+Perry :: worked on UI to make the state of game cleared
+Salaj :: implemented a way to change who goes first in a round
+Ariel :: implemented defend() for player
+
+
 
 
 ==============================================================

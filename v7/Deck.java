@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Deck {
 
+  //shuffle deck (taken from 51_bubbleSort)
   public static void shuffle( ArrayList al ){
     int randomIndex;
     //setup for traversal fr right to left
@@ -13,11 +14,13 @@ public class Deck {
     }
   }
 
-  public static void draw(ArrayList<Card> decker, ArrayList<Card> handy){
-      handy.add(decker.get(0));
-      decker.remove(0);
+  //take card from one ArrayList<Card> and transfer to another
+  public static void transfer(ArrayList<Card> giver, int index, ArrayList<Card> receiver){
+      receiver.add(giver.get(index));
+      giver.remove(index);
   }
 
+  //
   public static ArrayList<Card> createDeck() {
       ArrayList<Card> deck = new ArrayList<Card>();
       for(int i = 0; i < 4; i++){
