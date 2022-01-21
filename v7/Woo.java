@@ -123,6 +123,7 @@ public class Woo {
             computerHand.add(field.get(e));
             field.remove(e);
         }
+        playerTurn = false;
     }       
 
     //PlayerAttack
@@ -146,7 +147,7 @@ public class Woo {
         boolean madeMove = false;
         while( !madeMove ){
             //output
-            String output = "Cards in Field: " + field.toString() +
+            String output = "\nCards in Field: " + field.toString() +
                             "\n\nChoose a card to Defend with: \n" +
                             Deck.printHand(playerHand) + 
                             Integer.toString( playerHand.size() ) + ": Skip Turn\n" +
@@ -156,12 +157,13 @@ public class Woo {
             String input = in.nextLine();
             //if chose to skip, take the kids *ahem* i mean cards
             if ( Integer.parseInt(input) == playerHand.size() ){
-                System.out.println("You have accepted defeat you coward! You must take all the cards in retribution.");
+                System.out.println("\nYou have accepted defeat you coward! You must take all the cards in retribution.");
                 for(int e = field.size()-1; e >= 0; e--  ){
                     playerHand.add(field.get(e));
                     field.remove(e);
                 }
                 madeMove = true;
+                playerTurn = true;
             }
             //check if card chosen is valid
             else if( playerHand.get(Integer.parseInt(input)).compareTo(field.get(field.size()-1)) > 0 ){
