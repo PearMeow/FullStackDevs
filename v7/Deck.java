@@ -20,7 +20,6 @@ public class Deck {
       giver.remove(index);
   }
 
-  //
   public static ArrayList<Card> createDeck() {
       ArrayList<Card> deck = new ArrayList<Card>();
       for(int i = 0; i < 4; i++){

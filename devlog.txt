@@ -24,7 +24,8 @@ UNRESOLVED ISSUES
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+- Override
+- Packages
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,6 +83,9 @@ Ariel :: implemented defend() for player
 --------------------------------------------------------------
 Perry, Salaj, & Ariel :: Tried adding functionality in method that would help if the user entered an invalid input but it didn't work. 
 Brainstormed an algo that would allow adding cards.
+Salaj :: refactored code by making 3 instanceble classes: Deck, Hand, MainDeck. This was to organize the code more since it was getting a bit cluttered. Hand was made
+into a sort of OrderedArrayList class. MainDeck was the class for the MainDeck. And Deck was the superclass for both. Also made helper methods for Woo.java to remove clutter as well. Added
+implementation to allow player to try again if the make a mistake in the input.
 
 
 ==============================================================
