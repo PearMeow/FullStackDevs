@@ -21,6 +21,9 @@ UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - how to make gameplay loop?
 - if the user entered an invalid input? 
+- if we have one method that takes input? how do we account for
+the fact that there will be different message for defense and attack?
+- how are we going to make clear to the user which card is the card to beat?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -34,6 +37,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Fully understand the problem before trying to code a solution.
+- Test everytime time you code something new.
 
 
 
