@@ -3,25 +3,24 @@ import java.util.Scanner;
 
 public class Woo {
     //Main Deck
-    MainDeck mainDeck;      
+    private MainDeck mainDeck;      
     
     //Players *temporarily public*
-    public Hand playerHand;
-    public Hand computerHand;
+    private Hand playerHand;
+    private Hand computerHand;
     
     //For Each Round *temporarily public*
-    public Deck field;
-    boolean playerTurn;
+    private Deck field;
+    private boolean playerTurn;
 
     //Scanner
-    static Scanner in = new Scanner( System.in );
+    public static Scanner in = new Scanner( System.in );
     
     //constructor
     public Woo(){
             newGame();
     }
 
-    //should we combine constructor and newGame?
     //make new game
     public void newGame(){
             System.out.println("=====================================================\n" +
@@ -32,18 +31,17 @@ public class Woo {
             playerHand = new Hand();
             computerHand = new Hand();
             
-            //set up trump (select, and put to back of deck)
             Card.trumpCard = mainDeck.get(0);
-            mainDeck.transfer(0, mainDeck); //mainDeck.remove(0); mainDeck.add(Card.trumpCard); //remove trump card and add it to back of deck
             System.out.println("The trump card is " + Card.trumpCard + "\n");
+            mainDeck.transfer(0, mainDeck);
             
             //hand out cards
             drawCards();
 
             //to see who goes first
             playerTurn = playerHand.trumpCount() >= computerHand.trumpCount();
-            if( playerTurn ) System.out.println("You are going first!");
-            else System.out.println("The computer is going first!");
+            if( playerTurn ) System.out.println("You are going first!\n");
+            else System.out.println("The computer is going first!\n");
     }      
     
     //draw cards until all hands have at least 6 cards or deck is empty
@@ -111,37 +109,24 @@ public class Woo {
         return false;
     }
 
-    //make sure valid input is given by player
-    public int getValidInput(boolean defense){
-        //code to diffrentiate for defense and attack
-        String skipTurn = "";
-        int adder = 0;
-        if ( defense ){
-            skipTurn = Integer.toString(playerHand.size()) + ": Take Cards\n";
-            adder = 1;
-        } 
-        //print message
-        System.out.print("Cards in Field: " + field.toString() +
-                           "\n\nChoose a card to play: \n" +
-                           playerHand.toString() +
-                           skipTurn +
-                           "\nYour choice: ");
-        int input;
+    //make sure valid input is given by player 0->limit (exclusive)
+    public int getValidInput(int limit){
         //mkae sure input is a number
+        int input;
         try{
             input = Integer.parseInt( in.nextLine() );
         }
         catch( Exception e){
             System.out.println("\nNot valid input! Try Again!");
-            return getValidInput(defense);
+            return getValidInput(limit);
         }
         //make sure input is in range
-        if( 0 <= input && input < playerHand.size()+adder ){
+        if( 0 <= input && input < limit ){
             return input;   
         }
         else{
             System.out.println("\nNot valid input! Try Again!");
-            return getValidInput(defense);
+            return getValidInput(limit);
         }
     }
 
@@ -154,23 +139,22 @@ public class Woo {
     public void playRound(){
         System.out.println("=====================================================\n" +
                            "                      New Round\n" +
+                           "                 Computer Hand Size: " + Integer.toString(computerHand.size()) + "\n" +
+                           "              Cards Left in Main Deck: " + Integer.toString(mainDeck.size()) + "\n" +
                            "=====================================================\n"  );
         //reset the field
         field = new Deck();
         //who attacks, who defends
         if( playerTurn ){
-            attack();
-            defendAI();
+            while( attack() && defendAI() ){}
         }
         else {
-            attackAI();
-            defend();
+            while( attackAI() && defend() ){}
         }
         //swap who goes first next round
         playerTurn = !playerTurn;
         //check if game as ended
         if( !hasEnded() ){
-            //if not ended, draw cards and start another round
             drawCards();
             playRound();
         }
@@ -180,15 +164,27 @@ public class Woo {
     //future imp: make the defense methods return booleans
 
     //AI Attack
-    public void attackAI(){
+    public boolean attackAI(){
         //strategy: to play lowest value card
         //since computerHand is sorted, first card is lowest value card
-        System.out.println("Computer has played " + computerHand.get(0) + "!");
-        computerHand.transfer(0, field);
+        if (field.size() == 0 ){
+            System.out.println("\nComputer has played " + computerHand.get(0) + "!");
+            computerHand.transfer(0, field);
+            return true;
+        }
+        for( int i = 0; i < computerHand.size(); i++ ){
+            if (legalAttack( computerHand.get(i) ) ){
+                System.out.println("\nComputer has played " + computerHand.get(i) + "!");
+                computerHand.transfer(i, field);
+                return true;
+            }
+        }
+        System.out.println("\nComputer did not place a card to attack!");
+        return false;
     }
 
     //AI Defend
-    public void defendAI(){
+    public boolean defendAI(){
         //strategy: play lowest value (playable) card that can beat card in field,
         //if n/a, then pick up the cards
 
@@ -198,53 +194,91 @@ public class Woo {
             if( legalDefense( computerHand.get(a) ) ){
                 System.out.println("\nComputer uses the " + computerHand.get(a) + " to defeat the " + field.get(field.size() -1) + "!\n");
                 computerHand.transfer(a, field);
-                return; //since you played card
+                return true; //since you played card
             }
-            // ADD 
-            // if successful defend, check player's hand for things that they can add
-            // if addable cards, attack again
         }
         //if no card was found
         System.out.println(computerHand.toString() + "\nComputer is too weak to defeat your card. It takes all the cards on the field.");
         pickUp(computerHand);
         playerTurn = false; //since computer lost, will not go first next round
+        return false;
     }       
 
     //Player Attack
-    public void attack(){
-        //input
-        int input = getValidInput( false );
+    public boolean attack(){
+        String xTra = "";
+        int adder = 0;
+        if ( field.size() > 0){
+            xTra = Integer.toString(playerHand.size()) + ": Skip Attack\n";
+            adder = 1;
+        }
+        String message =  "Cards in Field: " + field.toString() +
+                          "\n\nChoose a card to play: \n" +
+                          playerHand.toString() +
+                          xTra +
+                          "\nYour choice: ";
+        System.out.print(message);
+                          
+        int input = getValidInput( playerHand.size() + adder );
+        
         //check if inputted card is legal move, else restart
-        while( !legalAttack( playerHand.get(input) ) ){
-            System.out.println("Not a valid card to play nincompoop! Try again!");
-            input = getValidInput( false );
+        while( input != playerHand.size() && !legalAttack( playerHand.get(input) ) ){
+            System.out.print("\nNot a valid card to play nincompoop! Try again!\n" + message);
+            input = getValidInput( playerHand.size() + adder );
+        }
+        if ( input == playerHand.size() ){
+            System.out.println("\nYou chose not to attack!");
+            return false;
         }
         //put card in field
         playerHand.transfer(input, field);
+        return true;
     }
     
     //Player Defend
-    public void defend(){
+    public boolean defend(){
+        String message =  "Cards in Field: " + field.toString() +
+                          "\n\nChoose a card to play: \n" +
+                          playerHand.toString() +
+                          Integer.toString(playerHand.size()) + ": Take Cards" +
+                          "\nYour choice: ";
+        System.out.print(message);
         //input
-        int input = getValidInput( true );
+        int input = getValidInput( playerHand.size()+1 );
         //keep on going until valid move is made
         while( input != playerHand.size() && !legalDefense( playerHand.get(input) ) ){
-            System.out.println("Not a legal move! Try again!");
-            input = getValidInput(  true );
+            System.out.print("\nNot a legal move! Try again!\n" + message);
+            input = getValidInput(  playerHand.size() + 1 );
         }
         //if player chose to not defend
         if( input == playerHand.size() ){
             System.out.println("\nYou have accepted defeat you coward! You must take all the cards in retribution.");
             pickUp( playerHand );
             playerTurn = true;
-            return; //make return false if we make defend methods booleans
+            return false; //make return false if we make defend methods booleans
         }
         //place card
         playerHand.transfer(input, field);
+        return true;
     }      
         
     public static void main (String[] args) {
-        Woo game = new Woo();
-        game.start();
+        Woo game;
+        boolean goAgain = true;
+        while ( goAgain ){
+            game = new Woo();
+            game.start();
+
+            System.out.println("Would you like to go again (yes/no): ");
+            input = in.readLine();
+            if( input.equals("yes") ){
+                goAgain = true;
+            }
+            else{
+                System.out.println("Okay BYE!");
+                goAgain = false;
+            }
+        }
+
     }
 }

@@ -3,18 +3,18 @@ import java.util.Scanner;
 
 public class Woo {
     //Main Deck
-    MainDeck mainDeck;      
+    private MainDeck mainDeck;      
     
     //Players *temporarily public*
-    public Hand playerHand;
-    public Hand computerHand;
+    private Hand playerHand;
+    private Hand computerHand;
     
     //For Each Round *temporarily public*
-    public Deck field;
-    boolean playerTurn;
+    private Deck field;
+    private boolean playerTurn;
 
     //Scanner
-    static Scanner in = new Scanner( System.in );
+    public static Scanner in = new Scanner( System.in );
     
     //constructor
     public Woo(){
@@ -33,14 +33,15 @@ public class Woo {
             
             Card.trumpCard = mainDeck.get(0);
             System.out.println("The trump card is " + Card.trumpCard + "\n");
+            mainDeck.transfer(0, mainDeck);
             
             //hand out cards
             drawCards();
 
             //to see who goes first
             playerTurn = playerHand.trumpCount() >= computerHand.trumpCount();
-            if( playerTurn ) System.out.println("You are going first!");
-            else System.out.println("The computer is going first!");
+            if( playerTurn ) System.out.println("You are going first!\n");
+            else System.out.println("The computer is going first!\n");
     }      
     
     //draw cards until all hands have at least 6 cards or deck is empty
@@ -138,6 +139,8 @@ public class Woo {
     public void playRound(){
         System.out.println("=====================================================\n" +
                            "                      New Round\n" +
+                           "                 Computer Hand Size: " + Integer.toString(computerHand.size()) + "\n" +
+                           "              Cards Left in Main Deck: " + Integer.toString(mainDeck.size()) + "\n" +
                            "=====================================================\n"  );
         //reset the field
         field = new Deck();
@@ -165,18 +168,18 @@ public class Woo {
         //strategy: to play lowest value card
         //since computerHand is sorted, first card is lowest value card
         if (field.size() == 0 ){
-            System.out.println("Computer has played " + computerHand.get(0) + "!");
+            System.out.println("\nComputer has played " + computerHand.get(0) + "!");
             computerHand.transfer(0, field);
             return true;
         }
         for( int i = 0; i < computerHand.size(); i++ ){
             if (legalAttack( computerHand.get(i) ) ){
-                System.out.println("Computer has played " + computerHand.get(i) + "!");
+                System.out.println("\nComputer has played " + computerHand.get(i) + "!");
                 computerHand.transfer(i, field);
                 return true;
             }
         }
-        System.out.println("Computer did not place a card to attack!");
+        System.out.println("\nComputer did not place a card to attack!");
         return false;
     }
 
@@ -206,7 +209,7 @@ public class Woo {
         String xTra = "";
         int adder = 0;
         if ( field.size() > 0){
-            xTra = Integer.toString(playerHand.size()) + ": Skip Turn";
+            xTra = Integer.toString(playerHand.size()) + ": Skip Attack\n";
             adder = 1;
         }
         String message =  "Cards in Field: " + field.toString() +
@@ -220,7 +223,7 @@ public class Woo {
         
         //check if inputted card is legal move, else restart
         while( input != playerHand.size() && !legalAttack( playerHand.get(input) ) ){
-            System.out.print("Not a valid card to play nincompoop! Try again!\n" + message);
+            System.out.print("\nNot a valid card to play nincompoop! Try again!\n" + message);
             input = getValidInput( playerHand.size() + adder );
         }
         if ( input == playerHand.size() ){
@@ -244,7 +247,7 @@ public class Woo {
         int input = getValidInput( playerHand.size()+1 );
         //keep on going until valid move is made
         while( input != playerHand.size() && !legalDefense( playerHand.get(input) ) ){
-            System.out.print("Not a legal move! Try again!\n" + message);
+            System.out.print("\nNot a legal move! Try again!\n" + message);
             input = getValidInput(  playerHand.size() + 1 );
         }
         //if player chose to not defend
@@ -260,7 +263,22 @@ public class Woo {
     }      
         
     public static void main (String[] args) {
-        Woo game = new Woo();
-        game.start();
+        Woo game;
+        boolean goAgain = true;
+        while ( goAgain ){
+            game = new Woo();
+            game.start();
+
+            System.out.println("Would you like to go again (yes/no): ");
+            input = in.readLine();
+            if( input.equals("yes") ){
+                goAgain = true;
+            }
+            else{
+                System.out.println("Okay BYE!");
+                goAgain = false;
+            }
+        }
+
     }
 }

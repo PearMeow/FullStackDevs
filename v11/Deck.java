@@ -30,27 +30,6 @@ public class Deck {
     receiver.add( cards.get(index) );
     this.remove(index);
   }
-
-  //swap 2 vals
-  public void swap(int i, int j) {
-    Card temp = cards.get(j);
-    cards.set(j, cards.get(i));
-    cards.set(i, temp);
-  }
-  
-  //sort
-  public void sort(){
-    for(int partition = 0; partition < cards.size() - 1; partition++) {
-      for(int i = partition + 1; i > 0; i--) {
-        if ( cards.get(i).compareTo(cards.get(i - 1)) < 0 ) {
-          this.swap( i, i-1);
-        }
-        else{
-          break;
-        }//end else
-      }//end for
-    }//end for
-  }//end sort
   
   //string rep
   public String toString(){

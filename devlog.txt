@@ -11,35 +11,41 @@ Durak/Durak
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- We made trump card a static variable so its constant for all cards
-- We checked if a move was valid before letting the player make it.
-- We created a boolean variable called playerTurn that determines wheter or not the player goes first in a round to
-help alternate who goes first.
-- We made the AI do a move that always plays the lowest possible card, which is usually smart.
+- How can we save what card is trump card for all cards?:
+  We made trump card a static variable so its constant for all cards
+
+- How can we prevent the player from making illegal moves?:
+  We checked if a move was valid before letting the player make it.
+
+- How can we alternate who goes first each round?:
+  We created a boolean variable called playerTurn that determines whether player attacks or defends.
+
+- How can we code an AI to play the game?:
+  We made a subclass of Deck called Hand that behaves like OrderedArrayList (always ordered)
+  and we played the lowest value card possible each turn.
+
+- How can we keep the program going even after user makes invalid input?:
+  We made a helper method called getValidInput that keeps on asking user to input
+  something until a valid input is given.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- how to make gameplay loop?
-- if the user entered an invalid input? 
-- if we have one method that takes input? how do we account for
-the fact that there will be different message for defense and attack?
-- how are we going to make clear to the user which card is the card to beat?
+- How can we implement counter attack?
+- How can we allow attacker to place multiple cards in one turn?
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- Override
-- Packages
+- @Override/Annotations
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Classes for Deck, MainDeck, Hand
+- Trump card selected first, then cards are handed out
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Fully understand the problem before trying to code a solution.
 - Test everytime time you code something new.
-
-
 
 
  ______   ______   __   __   __       ______   _______     
@@ -79,7 +85,7 @@ Salaj: added sorting to help computer make decisions
 2022-1-20:
 --------------------------------------------------------------
 Perry, Salaj & Ariel :: Made the first operating version (v7) of the game. Currently only player can attack and computer can do both
-Perry :: worked on UI to make the state of game cleared
+Perry :: worked on UI to make the state of game clearer
 Salaj :: implemented a way to change who goes first in a round
 Ariel :: implemented defend() for player
 
@@ -93,7 +99,10 @@ implementation to allow player to try again if the make a mistake in the input.
 
 2022-1-23:
 --------------------------------------------------------------
-
+Perry, Salaj & Ariel: Created the full working version of Durak. Conducted severall tests to make sure that functionality was complete.
+Ariel :: Created the first preliminary code which allowed for the player to play several cards. Added option to take cards at any point in the ai's attack. Made 
+Salaj :: Improved upon the code that let players play additional cards. Fized a bug in attack(). Made it so that you had could only add cards with numbers that were already on the field.
+Perry :: Improved UI so that the game would tell you how many cards were left in th deck.
 
 ==============================================================
 
