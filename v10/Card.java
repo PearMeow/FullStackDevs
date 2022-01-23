@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1ecbba9fbce4114ec8a1647f656d46c5835c3172
 public class Card implements Comparable {
     //Public (so all cards have access to the trump card)
     public static Card trumpCard;

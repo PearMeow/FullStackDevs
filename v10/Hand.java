@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ecbba9fbce4114ec8a1647f656d46c5835c3172
 //will always be sorted. behaves like OAL
 public class Hand extends Deck{
 
@@ -42,3 +46,8 @@ public class Hand extends Deck{
         return result;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 1ecbba9fbce4114ec8a1647f656d46c5835c3172
