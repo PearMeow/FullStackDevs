@@ -91,6 +91,9 @@ Salaj :: refactored code by making 3 instanceble classes: Deck, Hand, MainDeck. 
 into a sort of OrderedArrayList class. MainDeck was the class for the MainDeck. And Deck was the superclass for both. Also made helper methods for Woo.java to remove clutter as well. Added
 implementation to allow player to try again if the make a mistake in the input.
 
+2022-1-23:
+--------------------------------------------------------------
+
 
 ==============================================================
 
