@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Woo {
@@ -270,7 +269,7 @@ public class Woo {
             game.start();
 
             System.out.println("Would you like to go again (yes/no): ");
-            input = in.readLine();
+            String input = in.nextLine();
             if( input.equals("yes") ){
                 goAgain = true;
             }
